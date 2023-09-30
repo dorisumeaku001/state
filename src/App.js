@@ -1,25 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    fullName: 'John Doe',
+    bio: 'A brief description of John Doe.',
+    imgSrc: 'image-url.jpg',
+    profession: 'Software Engineer',
+    show: false,
+  };
 }
+  
+  render() {
+    const {fullName, bio, imgSrc, profession, show} = this.state;
+
+    return (
+      
+      {show && (
+
+        {fullName}
+        {bio}
+        {profession}
+      ) }
+    );
+  } 
+
+
+  componentDidMount() {
+    this.intervalId = setInterval(() => {
+      const timeInterval = Date.now() - this.mountTime;
+    this.setState({ timeInterval });
+    }, 1000);
+
+  this.mountTime = Date.now();
+}
+
+state = {
+  timeInterval: 0,
+};
+  
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
+  }
+  render() {
+    const { fullName, bio, imgSrc, profession, show, timeInterval } = this.state;
+  
+    return (
+      
+        
+        {show && (
+          {fullName}
+          {bio}
+          {profession}
+
+        )}
+    )
+  }  
 
 export default App;
